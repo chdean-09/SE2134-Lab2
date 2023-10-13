@@ -8,13 +8,15 @@ async function handleRequest(request: IncomingMessage, response: ServerResponse)
   console.log('Debugging -- url is', url, 'while method is', method);
 
   if (url === '/apply-loan') {
-    const contents = fs.readFile("../money-lender.html")
-      .catch((error) => {
-        console.log('Error: ', error.message);
-      });
-    response
-      .writeHead(200, { 'Content-Type': 'text/html' })
-      .end(contents.toString());
+    try {
+      const contents = await fs.readFile('./Part2/money-lender.html', 'utf-8');
+      response.writeHead(200, { 'Content-Type': 'text/html' });
+      response.end(contents.toString());
+    } catch (error) {
+      console.log('Error: ', error);
+      response.writeHead(500, { 'Content-Type': 'text/plain' });
+      response.end('Internal Server Error');
+    }
   } else {
     response
       .writeHead(200)

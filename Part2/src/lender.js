@@ -20,13 +20,16 @@ function handleRequest(request, response) {
         const method = request.method;
         console.log('Debugging -- url is', url, 'while method is', method);
         if (url === '/apply-loan') {
-            const contents = promises_1.default.readFile("../money-lender.html")
-                .catch((error) => {
-                console.log('Error: ', error.message);
-            });
-            response
-                .writeHead(200, { 'Content-Type': 'text/html' })
-                .end(contents.toString());
+            try {
+                const contents = yield promises_1.default.readFile('./Part2/money-lender.html', 'utf-8');
+                response.writeHead(200, { 'Content-Type': 'text/html' });
+                response.end(contents.toString());
+            }
+            catch (error) {
+                console.log('Error: ', error);
+                response.writeHead(500, { 'Content-Type': 'text/plain' });
+                response.end('Internal Server Error');
+            }
         }
         else {
             response
