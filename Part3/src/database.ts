@@ -1,10 +1,11 @@
 import { Pool } from "pg"
+import { PASSWORD } from "../password";
 
 const pool = new Pool({
   host: 'localhost',
   user: 'postgres',
   port: 5432,
-  password: '',
+  password: PASSWORD,
   database: 'WebDev-Lab2'
 })
 
