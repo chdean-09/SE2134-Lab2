@@ -6,6 +6,7 @@ export default interface Loan {
   loan_amount: number;
   reason: string;
   status: string;
+  creation_date?: string;
   cash_release_date?: string;
   repayment_date?: string;
   approval_date?: string;

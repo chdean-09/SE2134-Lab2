@@ -8,6 +8,7 @@ function successfulInsert(values) {
     const loanAmountNum = values[3];
     const reason = values[4];
     const token = values[6];
+    const date = values[7];
     return `
   <!DOCTYPE html>
   <html lang="en">
@@ -21,12 +22,14 @@ function successfulInsert(values) {
   <body>
     Hello, ${name}! Your loan has been successfully applied! <br>
     Make sure to save your unique token as it lets you check your loan status anytime. <br>
+    <br>
     Loan Details:<br>
     Unique Token: ${token}<br>
     Email: ${email}<br>
     Phone Number: ${phone}<br>
     Loan Amount: ₱${loanAmountNum}<br>
     Reason for loan: ${reason}<br>
+    Time and Date Applied: ${date}<br>
     <button onclick="location.href = '/apply-loan';">
       Go back
     </button>
@@ -85,6 +88,7 @@ function status(statusInfo) {
 }
 ;
 function allInfos(allLoans) {
+    let number = 1;
     let html = `
   <!DOCTYPE html>
   <html lang="en">
@@ -99,15 +103,18 @@ function allInfos(allLoans) {
   `;
     allLoans.forEach((item) => {
         html += `
+    ${number}.
     Name: ${item.name}<br>
     Unique Token: ${item.token}<br>
     Email: ${item.email}<br>
     Phone Number: ${item.phone}<br>
     Loan Amount: ₱${item.loan_amount}<br>
+    Repayment Amount (+20%): ₱${item.loan_amount * 1.2}<br>
     Reason for loan: ${item.reason}<br>
     Status: ${item.status}<br>
     <br>
   `;
+        number++;
     });
     html += `
   <button onclick="location.href = '/apply-loan';">

@@ -28,18 +28,19 @@ async function handleRequest(request: IncomingMessage, response: ServerResponse)
     const loanAmountNum = parseInt(loanAmount!);
     const status = 'APPLIED';
     const token = crypto.randomBytes(32).toString('base64url');
-    const date = new Date(Date.now());
+    const date = new Date();
 
     const query = `
       INSERT INTO loans
-      (name, email, phone, loan_amount, reason, status, token)
-      VALUES ($1, $2, $3, $4, $5, $6, $7)
+      (name, email, phone, loan_amount, reason, status, token, creation_date)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, NOW())
     `;
 
     const values = [name, email, phone, loanAmountNum, reason, status, token];
 
     try {
       await pool.query(query, values);
+      values.push(date.toString());
 
       response
       .writeHead(200, { 'Content-Type': 'text/html' })
