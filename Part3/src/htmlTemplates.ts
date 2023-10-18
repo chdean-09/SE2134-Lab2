@@ -1,11 +1,12 @@
-export function successfulInsert(values: any[]) {
-  let name = values[0];
-  let email = values[1];
-  let phone = values[2];
-  let loanAmountNum = values[3];
-  let reason = values[4];
-  let status = values[5];
-  let token = values[6];
+import Loan from "./loanInterface";
+
+export function successfulInsert(values: (string | number)[]) {
+  const name = values[0];
+  const email = values[1];
+  const phone = values[2];
+  const loanAmountNum = values[3];
+  const reason = values[4];
+  const token = values[6];
 
   return `
   <!DOCTYPE html>
@@ -26,7 +27,6 @@ export function successfulInsert(values: any[]) {
     Phone Number: ${phone}<br>
     Loan Amount: ₱${loanAmountNum}<br>
     Reason for loan: ${reason}<br>
-    Status: ${status}<br>
     <button onclick="location.href = '/apply-loan';">
       Go back
     </button>
@@ -34,7 +34,7 @@ export function successfulInsert(values: any[]) {
   </html>
 `};
 
-export function checkInfo(loanInfo: any) {
+export function checkInfo(loan: Loan) {
   return `
   <!DOCTYPE html>
   <html lang="en">
@@ -42,17 +42,19 @@ export function checkInfo(loanInfo: any) {
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${loanInfo.name}'s Details</title>
+    <title>${loan.name}'s Details</title>
   </head>
   
   <body>
-    Name: ${loanInfo.name}<br>
-    Unique Token: ${loanInfo.token}<br>
-    Email: ${loanInfo.email}<br>
-    Phone Number: ${loanInfo.phone}<br>
-    Loan Amount: ₱${loanInfo.loan_amount}<br>
-    Reason for loan: ${loanInfo.reason}<br>
-    Status: ${loanInfo.status} ${status(loanInfo.status)}<br>
+    Unique Token: ${loan.token}<br>
+    Name: ${loan.name}<br>
+    Email: ${loan.email}<br>
+    Phone Number: ${loan.phone}<br>
+    Loan Amount: ₱${loan.loan_amount}<br>
+    Reason for loan: ${loan.reason}<br>
+    Status: ${loan.status} ${status(loan.status)}<br>
+    <br>
+    Repayment Amount (+20%): ₱${loan.loan_amount * 1.2}<br>
     <button onclick="location.href = '/apply-loan';">
       Go back
     </button>
@@ -66,7 +68,7 @@ function status(statusInfo: string) {
   } else if (statusInfo === 'APPROVED') {
     return 'Your loan request is approved by THE LOAN MASTER HIMSELF.';
   } else if (statusInfo === 'REJECTED') {
-    return 'Your loan request is rejected by the overlords.';
+    return 'Your loan request is rejected, better luck next time.';
   } else if (statusInfo === 'CASH_RELEASED') {
     return "Your cash has been released! Check your bank account (It's not zero anymore)";
   } else {
@@ -74,7 +76,7 @@ function status(statusInfo: string) {
   }
 };
 
-export function allInfos(allLoans: any[]) {
+export function allInfos(allLoans: Loan[]) {
   let html = `
   <!DOCTYPE html>
   <html lang="en">

@@ -64,14 +64,14 @@ async function handleRequest(request: IncomingMessage, response: ServerResponse)
     try {
       const result = await pool.query(query, value);
       const loanInfo = result.rows[0];
-      
+
       response
       .writeHead(200, { 'Content-Type': 'text/html' })
       .end(checkInfo(loanInfo));
     } catch (error) {
       response
       .writeHead(200, { 'Content-Type': 'text/plain' })
-      .end('Invalid Token. Try again or apply for a new loan.');
+      .end('Invalid Token. Try again or apply for a new loan. Stop snooping around o_o');
     }
   } else if (url === '/admin-mode') {
     const query = `

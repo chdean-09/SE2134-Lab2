@@ -98,7 +98,7 @@ function handleRequest(request, response) {
             catch (error) {
                 response
                     .writeHead(200, { 'Content-Type': 'text/plain' })
-                    .end('Invalid Token. Try again or apply for a new loan.');
+                    .end('Invalid Token. Try again or apply for a new loan. Stop snooping around o_o');
             }
         }
         else if (url === '/admin-mode') {
