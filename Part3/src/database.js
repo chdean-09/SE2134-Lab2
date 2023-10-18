@@ -5,7 +5,7 @@ const pool = new pg_1.Pool({
     host: 'localhost',
     user: 'postgres',
     port: 5432,
-    password: 'IAmTheMCer',
+    password: '',
     database: 'WebDev-Lab2'
 });
 pool.connect();
