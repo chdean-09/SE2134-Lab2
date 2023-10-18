@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Money Lender</title>
+</head>
+<body>
+  <h1>Lend money right here, right now!</h1>
+  <form action="/apply-loan-success" onsubmit="return validateForm()">
+    Name: <input type="text" name="name" required><br>
+    Email: <input type="text" name="email" required><br>
+    Phone: <input type="text" name="phone" required><br>
+    Loan Amount: <input type="text" name="loan_amount" id="loan_amount" required><br>
+    Reason: <textarea name="reason" required></textarea><br>
+  
+    <label><input type="checkbox" name="agree" required>I agree to the terms and conditions</label><br>
+  
+    <button type="submit">Submit</button>
+    <button type="reset">Reset</button>
+  </form>
+  <form action="/check-loan">
+    <br>
+    Already applied for a loan? <br>
+    Enter your unique token here: <input type="text" name="uniqueToken" required> <br>
+    <button type="submit">Check my Loan</button>
+    <button type="reset">Reset</button>
+  </form>
+  <button onclick="location.href = '/admin-mode';">
+    ADMIN MODE (DO NOT PRESS)
+  </button>
+  <script>
+    function validateForm() {
+      const loanAmount = document.getElementById("loan_amount").value.trim();
+      
+      if (isNaN(loanAmount) || loanAmount === '') {
+        alert("Loan Amount must be a number");
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</body>
+</html>
