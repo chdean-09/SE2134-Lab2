@@ -24,7 +24,7 @@ export function successfulInsert(values: any[]) {
     Unique Token: ${token}<br>
     Email: ${email}<br>
     Phone Number: ${phone}<br>
-    Loan Amount: ${loanAmountNum}<br>
+    Loan Amount: Php${loanAmountNum}<br>
     Reason for loan: ${reason}<br>
     Status: ${status}<br>
     <button onclick="location.href = '/apply-loan';">
@@ -50,7 +50,7 @@ export function checkInfo(loanInfo: any) {
     Unique Token: ${loanInfo.token}<br>
     Email: ${loanInfo.email}<br>
     Phone Number: ${loanInfo.phone}<br>
-    Loan Amount: ${loanInfo.loan_amount}<br>
+    Loan Amount: Php${loanInfo.loan_amount}<br>
     Reason for loan: ${loanInfo.reason}<br>
     Status: ${loanInfo.status} ${status(loanInfo.status)}<br>
     <button onclick="location.href = '/apply-loan';">
@@ -93,7 +93,7 @@ export function allInfos(allLoans: any[]) {
     Unique Token: ${item.token}<br>
     Email: ${item.email}<br>
     Phone Number: ${item.phone}<br>
-    Loan Amount: ${item.loan_amount}<br>
+    Loan Amount: Php${item.loan_amount}<br>
     Reason for loan: ${item.reason}<br>
     Status: ${item.status}<br>
     <br>

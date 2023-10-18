@@ -36,6 +36,9 @@
       if (isNaN(loanAmount) || loanAmount === '') {
         alert("Loan Amount must be a number");
         return false;
+      } else if (loanAmount < 1) {
+        alert("Why??");
+        return false;
       }
 
       return true;
