@@ -47,7 +47,7 @@ async function handleRequest(request: IncomingMessage, response: ServerResponse)
       .end(successfulInsert(values));
     } catch(error) {
       response
-      .writeHead(200, { 'Content-Type': 'text/plain' })
+      .writeHead(500, { 'Content-Type': 'text/plain' })
       .end('Having trouble applying loan. Error: ' + error);
     }
   } else if (url?.startsWith('/check-loan')) {
@@ -71,7 +71,7 @@ async function handleRequest(request: IncomingMessage, response: ServerResponse)
       .end(checkInfo(loanInfo));
     } catch (error) {
       response
-      .writeHead(200, { 'Content-Type': 'text/plain' })
+      .writeHead(500, { 'Content-Type': 'text/plain' })
       .end('Invalid Token. Try again or apply for a new loan. Stop snooping around o_o');
     }
   } else if (url === '/admin-mode') {
@@ -85,12 +85,12 @@ async function handleRequest(request: IncomingMessage, response: ServerResponse)
       const allLoans = result.rows;
 
       response
-      .writeHead(200, { 'Content-Type': 'text/html' })
-      .end(allInfos(allLoans));
-    } catch(error) {
+        .writeHead(200, { 'Content-Type': 'text/html' })
+        .end(allInfos(allLoans));
+    } catch (error) {
       response
-      .writeHead(200, { 'Content-Type': 'text/plain' })
-      .end('Having trouble applying loan. Error: ' + error);
+        .writeHead(500, { 'Content-Type': 'text/plain' })
+        .end('Cannot retrieve all the loan data. Error: ' + error);
     }
   } else {
     response

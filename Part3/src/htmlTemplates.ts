@@ -56,6 +56,7 @@ export function checkInfo(loan: Loan) {
     Loan Amount: ₱${Number(loan.loan_amount).toFixed(2)}<br>
     Reason for loan: ${loan.reason}<br>
     Status: ${loan.status} ${status(loan.status)}<br>
+    Time and Date Applied: ${loan.creation_date}<br>
     <br>
     Repayment Amount (+20%): ₱${Number(loan.loan_amount * 1.2).toFixed(2)}<br>
     <button onclick="location.href = '/apply-loan';">
@@ -67,15 +68,15 @@ export function checkInfo(loan: Loan) {
 
 function status(statusInfo: string) {
   if (statusInfo === 'APPLIED') {
-    return 'Please wait for your loan to be processed.';
+    return '(Please wait for your loan to be processed)';
   } else if (statusInfo === 'APPROVED') {
-    return 'Your loan request is approved by THE LOAN MASTER HIMSELF.';
+    return '(Your loan request is approved by THE LOAN MASTER)';
   } else if (statusInfo === 'REJECTED') {
-    return 'Your loan request is rejected, better luck next time.';
+    return '(Your loan request is rejected, better luck next time)';
   } else if (statusInfo === 'CASH_RELEASED') {
-    return "Your cash has been released! Check your bank account (It's not zero anymore)";
+    return '(Your cash has been released! Check your bank account)';
   } else {
-    return "Your loan has been repaid! Thank you for using this loaning service.";
+    return '(Your loan has been repaid! Thank you for using this loaning service)';
   }
 };
 
@@ -94,16 +95,17 @@ export function allInfos(allLoans: Loan[]) {
   <body>
   `;
 
-  allLoans.forEach((item) => {html +=`
+  allLoans.forEach((loan) => {html +=`
     ${number}.
-    Name: ${item.name}<br>
-    Unique Token: ${item.token}<br>
-    Email: ${item.email}<br>
-    Phone Number: ${item.phone}<br>
-    Loan Amount: ₱${Number(item.loan_amount).toFixed(2)}<br>
-    Repayment Amount (+20%): ₱${Number(item.loan_amount * 1.2).toFixed(2)}<br>
-    Reason for loan: ${item.reason}<br>
-    Status: ${item.status}<br>
+    Name: ${loan.name}<br>
+    Unique Token: ${loan.token}<br>
+    Email: ${loan.email}<br>
+    Phone Number: ${loan.phone}<br>
+    Loan Amount: ₱${Number(loan.loan_amount).toFixed(2)}<br>
+    Repayment Amount (+20%): ₱${Number(loan.loan_amount * 1.2).toFixed(2)}<br>
+    Reason for loan: ${loan.reason}<br>
+    Time and Date Applied: ${loan.creation_date}<br>
+    Status: ${loan.status}<br>
     <br>
   `
   number++;

@@ -77,7 +77,7 @@ function handleRequest(request, response) {
             }
             catch (error) {
                 response
-                    .writeHead(200, { 'Content-Type': 'text/plain' })
+                    .writeHead(500, { 'Content-Type': 'text/plain' })
                     .end('Having trouble applying loan. Error: ' + error);
             }
         }
@@ -98,7 +98,7 @@ function handleRequest(request, response) {
             }
             catch (error) {
                 response
-                    .writeHead(200, { 'Content-Type': 'text/plain' })
+                    .writeHead(500, { 'Content-Type': 'text/plain' })
                     .end('Invalid Token. Try again or apply for a new loan. Stop snooping around o_o');
             }
         }
@@ -116,8 +116,8 @@ function handleRequest(request, response) {
             }
             catch (error) {
                 response
-                    .writeHead(200, { 'Content-Type': 'text/plain' })
-                    .end('Having trouble applying loan. Error: ' + error);
+                    .writeHead(500, { 'Content-Type': 'text/plain' })
+                    .end('Cannot retrieve all the loan data. Error: ' + error);
             }
         }
         else {
