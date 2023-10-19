@@ -4,7 +4,7 @@ export function successfulInsert(values: (string | number)[]) {
   const name = values[0];
   const email = values[1];
   const phone = values[2];
-  const loanAmountNum = values[3];
+  const loanAmountNum = Number(values[3]);
   const reason = values[4];
   const token = values[6];
   const date = values[7];
@@ -27,7 +27,7 @@ export function successfulInsert(values: (string | number)[]) {
     Unique Token: ${token}<br>
     Email: ${email}<br>
     Phone Number: ${phone}<br>
-    Loan Amount: ₱${loanAmountNum}<br>
+    Loan Amount: ₱${loanAmountNum.toFixed(2)}<br>
     Reason for loan: ${reason}<br>
     Time and Date Applied: ${date}<br>
     <button onclick="location.href = '/apply-loan';">
@@ -53,11 +53,11 @@ export function checkInfo(loan: Loan) {
     Name: ${loan.name}<br>
     Email: ${loan.email}<br>
     Phone Number: ${loan.phone}<br>
-    Loan Amount: ₱${loan.loan_amount}<br>
+    Loan Amount: ₱${Number(loan.loan_amount).toFixed(2)}<br>
     Reason for loan: ${loan.reason}<br>
     Status: ${loan.status} ${status(loan.status)}<br>
     <br>
-    Repayment Amount (+20%): ₱${loan.loan_amount * 1.2}<br>
+    Repayment Amount (+20%): ₱${Number(loan.loan_amount * 1.2).toFixed(2)}<br>
     <button onclick="location.href = '/apply-loan';">
       Go back
     </button>
@@ -100,8 +100,8 @@ export function allInfos(allLoans: Loan[]) {
     Unique Token: ${item.token}<br>
     Email: ${item.email}<br>
     Phone Number: ${item.phone}<br>
-    Loan Amount: ₱${item.loan_amount}<br>
-    Repayment Amount (+20%): ₱${item.loan_amount * 1.2}<br>
+    Loan Amount: ₱${Number(item.loan_amount).toFixed(2)}<br>
+    Repayment Amount (+20%): ₱${Number(item.loan_amount * 1.2).toFixed(2)}<br>
     Reason for loan: ${item.reason}<br>
     Status: ${item.status}<br>
     <br>
